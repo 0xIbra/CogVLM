@@ -63,7 +63,7 @@ def load_model(args):
         bf16=args.bf16,
         skip_init=True,
         use_gpu_initialization=True,
-        device=f'cuda'),
+        device='cuda:0'),
         overwrite_args={'model_parallel_size': world_size} if world_size != 1 else {}
     )
     model = model.eval()
