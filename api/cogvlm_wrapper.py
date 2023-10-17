@@ -46,7 +46,7 @@ class ModelWrapper:
         model, model_args = CogVLMModel.from_pretrained(
             self.model_id,
             args=argparse.Namespace(
-                deepseed=None,
+                deepspeed=None,
                 local_rank=0,
                 rank=0,
                 world_size=world_size,
@@ -71,7 +71,7 @@ class ModelWrapper:
 
         self.text_processor_infer = llama2_text_processor_inference(tokenizer, self.max_length, self.model.image_length)
 
-    def predict(self, input_text: str, image: Image.Image, temperature: float = 0.8, top_p: float = 0.4, top_k: float = .8):
+    def predict(self, input_text: str, image: Image.Image, temperature: float = 0.8, top_p: float = 0.4, top_k: int = 5):
         with torch.no_grad():
             response, _, cache_image = chat(
                 image_path="",

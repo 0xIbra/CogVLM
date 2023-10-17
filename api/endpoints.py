@@ -7,7 +7,7 @@ import base64
 
 blueprint = Blueprint('api_bp', __name__)
 
-MODEL = None
+MODEL = ModelWrapper()
 
 
 @blueprint.route('/api/predict', methods=['POST'])
@@ -24,12 +24,11 @@ def predict():
     b64_image = payload['image']
     prompt = payload['prompt']
 
+    if 'base64,' in b64_image:
+        b64_image = b64_image.partition('base64,')[2]
+
     img = Image.open(BytesIO(base64.b64decode(b64_image)))
 
-    if MODEL is None:
-        MODEL = ModelWrapper()
-
     result = MODEL.predict(prompt, img)
-    print("prediction result: ", result)
 
     return jsonify({'data': result})
