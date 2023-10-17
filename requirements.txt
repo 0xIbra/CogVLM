@@ -7,3 +7,6 @@ spacy>=3.6.0
 pillow>=10.0.1
 deepspeed>=0.11.0
 seaborn
+bitsandbytes
+gradio
+scipy
