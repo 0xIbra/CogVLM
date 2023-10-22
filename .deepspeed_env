@@ -1,2 +1,2 @@
-SAT_HOME=~/.sat_models
+SAT_HOME=/kaggle/input/cogvlm-base-224
 LOCAL_WORLD_SIZE=8
